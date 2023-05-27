@@ -1,4 +1,0 @@
-ls
-betty utility.c
-gcc utility.c
-clear
