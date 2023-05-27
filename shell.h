@@ -3,15 +3,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
-#include <fcntl.h>
-#include <errno.h>
-#include <sys/wait.h>
-#include <sys/stat.h>
 #include <unistd.h>
 #include <string.h>
 #include <sys/types.h>
-
+#include <sys/wait.h>
+#include <sys/stat.h>
+#include <limits.h>
+#include <fcntl.h>
+#include <errno.h>
 
 /* for read/write buffers */
 #define READ_BUF_SIZE 1024
@@ -78,6 +77,10 @@ typedef struct passinfo
 	char *arg;
 	char **argv;
 	char *path;
+	int argc;
+	unsigned int line_count;
+	int err_num;
+	int linecount_flag;
 	char *fname;
 	list_t *env;
 	list_t *history;
@@ -85,10 +88,6 @@ typedef struct passinfo
 	char **environ;
 	int env_changed;
 	int status;
-	int argc;
-	unsigned int line_count;
-	int err_num;
-	int linecount_flag;
 
 	char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
 	int cmd_buf_type; /* CMD_type ||, &&, ; */
